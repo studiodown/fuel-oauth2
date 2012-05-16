@@ -65,4 +65,19 @@ class Provider_Windowslive extends Provider
 			),
 		);
 	}
+	
+	public function get_user_contacts(Token_Access $token)
+	{
+		// define the get user information token
+		$url = 'https://apis.live.net/v5.0/me/contacts?'.http_build_query(array(
+			'access_token' => $token->access_token,
+		));
+		
+		// perform network request
+		$contacts = json_decode(file_get_contents($url));
+
+		return($contacts);
+	}
+	
+	
 }
